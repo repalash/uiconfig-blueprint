@@ -1,29 +1,30 @@
 import {defineConfig} from 'vite'
 import react from '@vitejs/plugin-react'
 import json from "@rollup/plugin-json";
-import dts from 'vite-plugin-dts'
 import packageJson from "./package.json";
 import license from 'rollup-plugin-license'
+import {readdirSync} from "node:fs";
 
 const { name, version, author } = packageJson
 
 export default defineConfig({
-    optimizeDeps: {
-        exclude: ['uiconfig.js'],
-    },
+    base: './',
+    // optimizeDeps: {
+    //     exclude: ['uiconfig.js'],
+    // },
     build: {
         sourcemap: true,
-        outDir: 'dist',
-        lib: {
-            entry: 'src/index.ts',
-            formats: ['es', 'umd'],
-            name: packageJson["name:umd"],
-            fileName: (format) => (format === 'umd' ? packageJson["clean-package"].replace.main : packageJson["clean-package"].replace.module).replace('dist/', ''),
-        },
+        outDir: 'dist-examples',
+        // lib: {
+        //     entry: 'src/index.ts',
+        //     formats: ['es', 'umd'],
+        //     name: packageJson["name:umd"],
+        //     fileName: (format) => (format === 'umd' ? packageJson["clean-package"].replace.main : packageJson["clean-package"].replace.module).replace('dist/', ''),
+        // },
         emptyOutDir: true,
-        commonjsOptions: {
-            exclude: [/uiconfig.js/],
-        },
+        // commonjsOptions: {
+        //     exclude: [/uiconfig.js/],
+        // },
         rollupOptions: {
             // external: ['react', 'react-dom'],
             output: {
@@ -32,12 +33,12 @@ export default defineConfig({
                 // },
                 // inlineDynamicImports: false,
             },
-            // input: {
-            //     main: 'index.html',
-            //     ...Object.fromEntries(readdirSync('examples')
-            //         .filter(f=>f.endsWith('.html'))
-            //         .map((file) => [file.replace('.html', ''), `examples/${file}`])),
-            // },
+            input: {
+                main: 'index.html',
+                ...Object.fromEntries(readdirSync('examples')
+                    .filter(f=>f.endsWith('.html'))
+                    .map((file) => [file.replace('.html', ''), `examples/${file}`])),
+            },
         }
     },
     resolve: {
@@ -66,7 +67,7 @@ export default defineConfig({
         }
     },
     plugins: [
-        dts(),
+        // dts(),
         react(),
         // del({
         //     targets: 'dist/*',
