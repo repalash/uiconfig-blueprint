@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> This repository has moved to the uiconfig monorepo: [repalash/uiconfig.js/packages/uiconfig-blueprint](https://github.com/repalash/uiconfig.js/tree/master/packages/uiconfig-blueprint). The npm package name stays `uiconfig-blueprint`. This repository is archived: open issues and pull requests in [repalash/uiconfig.js](https://github.com/repalash/uiconfig.js).
+
 # UiConfig Blueprint.js
 
 [![NPM Package](https://img.shields.io/npm/v/uiconfig-blueprint.svg)](https://www.npmjs.com/package/uiconfig-blueprint)
